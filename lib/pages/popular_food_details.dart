@@ -14,12 +14,13 @@ import '../widget/big_text.dart';
 
 
 class PopularFoodDetails extends StatelessWidget {
-  int pageId;
-   PopularFoodDetails({required this.pageId});
+ final int pageId;
+  const PopularFoodDetails({required this.pageId});
 
   @override
   Widget build(BuildContext context) {
     var product = Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct();
     print("height of windowns " + MediaQuery.of(context).size.height.toString());
     print("windows of windowns " + MediaQuery.of(context).size.width.toString());
     return Scaffold(
@@ -79,7 +80,8 @@ class PopularFoodDetails extends StatelessWidget {
       ),
     
      ]),
-     bottomNavigationBar: Container(
+     bottomNavigationBar: GetBuilder<PopularProductController>(builder: (popularProducts){
+        return Container(
       height: Dimensions.bottombarsize,
       padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height20),
       decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius20*2),
@@ -97,11 +99,19 @@ class PopularFoodDetails extends StatelessWidget {
            color: Colors.white,
           ),
          child: Row(children: [
-          Icon(Icons.remove, color: AppColors.signColor, size: Dimensions.iconSize16,),
+          GestureDetector(
+            onTap: (){
+              popularProducts.setQuantity(false);
+            },
+            child: Icon(Icons.remove, color: AppColors.signColor, size: Dimensions.iconSize16,)),
           SizedBox(width: Dimensions.width5,),
-          BigText(text: "0", size: Dimensions.font16,),
+          BigText(text: popularProducts.quantity.toString(), size: Dimensions.font16,),
           SizedBox(width: Dimensions.width5,),
-          Icon(Icons.add, color: AppColors.signColor,size: Dimensions.iconSize16,)
+          GestureDetector(
+            onTap: () {
+              popularProducts.setQuantity(true);
+            },
+            child: Icon(Icons.add, color: AppColors.signColor,size: Dimensions.iconSize16,))
          ],),
         ),
         Container(
@@ -109,10 +119,11 @@ class PopularFoodDetails extends StatelessWidget {
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.radius20),
           color: AppColors.mainColor
           ),
-          child: BigText(text: "\$0.08 | Add to cart", color: Colors.white, size: Dimensions.font16,) 
+          child: BigText(text: "\u{20B9} ${product.price*74*popularProducts.quantity} | Add to cart", color: Colors.white, size: Dimensions.font16,) 
         ),
       ],),
-     ),
-    );
+     );
+    
+     }));
   }
 }

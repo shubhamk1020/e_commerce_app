@@ -3,7 +3,7 @@ import 'package:e_commerce_app/controllers/cart_controller.dart';
 import 'package:e_commerce_app/controllers/popular_product_controller.dart';
 import 'package:e_commerce_app/controllers/recommended_product_controller.dart';
 import 'package:e_commerce_app/pages/home/main_food_page.dart';
-import 'package:e_commerce_app/pages/popular_food_details.dart';
+import 'package:e_commerce_app/pages/food/popular_food_details.dart';
 import 'package:e_commerce_app/routes/route_helpers.dart';
 import 'package:e_commerce_app/utils/app_constants.dart';
 import 'package:e_commerce_app/utils/colors.dart';

@@ -23,11 +23,8 @@ class PopularProductController extends GetxController{
 
    int _quantity = 0;
    int get quantity => _quantity;
-
    int _inCartItems = 0;
    int get inCartItems => _inCartItems + _quantity;
-
-   
 
 
     Future<void> getPopularProductList() async{

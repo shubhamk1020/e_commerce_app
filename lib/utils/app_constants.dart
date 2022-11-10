@@ -9,6 +9,7 @@ class AppConstants{
   static const String UPLOAD_URL = "/uploads/";
 
   static const String TOKEN = "SKToken";
+  static const String CART_LIST="cart_list";
 
 
 }

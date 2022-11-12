@@ -10,6 +10,7 @@ class AppConstants{
 
   static const String TOKEN = "SKToken";
   static const String CART_LIST="cart_list";
+  static const String CART_HISTORY_LIST = "Cart_history";
 
 
 }

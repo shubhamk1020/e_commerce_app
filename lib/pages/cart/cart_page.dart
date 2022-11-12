@@ -27,7 +27,8 @@ class CartPage extends StatelessWidget {
      return Scaffold(
       body: Stack(children: [
           Positioned(
-            left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height20,
+            left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height45,
+            
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -48,7 +49,7 @@ class CartPage extends StatelessWidget {
           ),
 
           Positioned(
-            left: Dimensions.width15, right: Dimensions.width15, bottom: 0, top: Dimensions.height20*4,
+            left: Dimensions.width15, right: Dimensions.width15, bottom: 0, top: Dimensions.height20*4.5,
             child: MediaQuery.removePadding(
               context: context,
               removeTop: true,
@@ -173,7 +174,7 @@ class CartPage extends StatelessWidget {
           ),
           child: GestureDetector(
             onTap: () {
-              
+              cartController.addToHistory();
             },
             child: BigText(text: "Check out", color: Colors.white, size: Dimensions.font16,)) 
         ),

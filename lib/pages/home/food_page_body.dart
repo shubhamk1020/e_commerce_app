@@ -73,7 +73,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       );
     }),
    
-      SizedBox(height: Dimensions.height20,),
+      SizedBox(height: Dimensions.height15,),
 
       Container(
          margin: EdgeInsets.only(left: Dimensions.width30),

@@ -71,14 +71,12 @@ class PopularFoodDetails extends StatelessWidget {
                      )
                     :Container(),
             
-            
                      Get.find<PopularProductController>().totalItems>=1?
                      Positioned(right: 6, top: 4,
                      child: BigText(text: controller.totalItems.toString(), size: 12, color: Colors.white,)
                      
                      )
                     :Container(),
-            
             
               ],),
             );
@@ -96,7 +94,8 @@ class PopularFoodDetails extends StatelessWidget {
       top: Dimensions.popularImageSize-20,
       child: Container(
         padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height20),
-        decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius20), topRight: Radius.circular(Dimensions.radius20)
+        decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius20),
+        topRight: Radius.circular(Dimensions.radius20)
         ),
         color: Colors.white
         ),

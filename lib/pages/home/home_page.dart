@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/pages/cart/cart_history.dart';
 import 'package:e_commerce_app/pages/home/main_food_page.dart';
 import 'package:e_commerce_app/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +22,10 @@ class HomePage extends StatefulWidget {
    List pages =[
       MainFoodPage(),
       Container(child: Center(child: Text("shubham kumar ")),),
-      Container(child: Center(child: Text("ravi kumar ")),),
+      CartHistory(),
       Container(child: Center(child: Text("aarti kumari ")),),
-      Container(child: Center(child: Text("pooja kumari ")),),
-      
+     
     ];
-
-   
 
     void onTapNav(int index){
       setState(() {

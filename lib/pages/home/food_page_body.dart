@@ -232,11 +232,11 @@ Widget _buildPageItem(int index, ProductModel popularProduct) {
           ),
           
          child: Container(
-        padding: EdgeInsets.only(left: Dimensions.width15 ,right: Dimensions.width15, top: Dimensions.height15),
+        padding: EdgeInsets.only(left: Dimensions.width15, 
+        right: Dimensions.width15, top: Dimensions.height15),
         child: AppColumn(text: popularProduct.name!) )
        ),
-    
-      ),
+       ),
      
     ],
     ),

@@ -24,7 +24,7 @@ class PopularFoodDetails extends StatelessWidget {
     Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
    
     return Scaffold(
-      backgroundColor: Colors.white,
+     backgroundColor: Colors.white,
      body: Stack(children: [
       Positioned(
       left: 0,
@@ -47,7 +47,7 @@ class PopularFoodDetails extends StatelessWidget {
         GestureDetector(
           onTap: (){
             if(page == "cart_page"){
-              Get.toNamed(RouteHelpers.getCart());
+              Get.toNamed(RouteHelpers.getCartPage());
             }
             else{
               Get.toNamed(RouteHelpers.getInitial()); 

@@ -12,14 +12,22 @@ import '../../models/cart_model.dart';
   List<String> cart=[];
   List<String> cartHistory=[];
 
-  void addToCartList(List<CartModel> cartList){
+    void addToCartList(List<CartModel> cartList){
+    // sharedPreferences.remove(AppConstants.CART_LIST);
+    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST); 
+    
+    var time = DateTime.now().toString();
     cart = [];
    
-    cartList.forEach((element) => cart.add(jsonEncode(element)));
+    cartList.forEach((element){
+      element.time = time;
+      return cart.add(jsonEncode(element));
+    });
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     getCartList();
-  }
+  
+    }
 
       List<CartModel> getCartList(){
 
@@ -30,9 +38,7 @@ import '../../models/cart_model.dart';
         }
         List<CartModel> cartList = [];
 
-        carts.forEach((element) =>
-          cartList.add(CartModel.fromJson(jsonDecode(element)))
-        );
+        carts.forEach((element) => CartModel.fromJson(jsonDecode(element)));
         return cartList;
       }
 
@@ -44,11 +50,11 @@ import '../../models/cart_model.dart';
         }
         List<CartModel> cartListHistory = [];
         cartHistory.forEach((element) => cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
-        return getCartHistoryList();
+        return cartListHistory;
 
       }
   
-    void addToCartHistory(){
+      void addToCartHistoryList(){
       if(sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)){
         cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
 
@@ -56,15 +62,20 @@ import '../../models/cart_model.dart';
       
       for(int i=0; i<cart.length; i++){
         cartHistory.add(cart[i]);
+        }
+
         removeCart();
         sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
-        
-
-      }
+         for(int j=0; j<getCartHistoryList().length; j++){
+         }
+      
       }
 
       void removeCart(){
+      cart=[];
       sharedPreferences.remove(AppConstants.CART_LIST);
       }
+
+      
 
 }

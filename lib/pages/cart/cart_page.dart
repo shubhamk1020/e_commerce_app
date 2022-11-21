@@ -1,9 +1,8 @@
 
+import 'package:e_commerce_app/base/no_data-page.dart';
 import 'package:e_commerce_app/controllers/cart_controller.dart';
 import 'package:e_commerce_app/controllers/popular_product_controller.dart';
 import 'package:e_commerce_app/controllers/recommended_product_controller.dart';
-import 'package:e_commerce_app/pages/home/main_food_page.dart';
-import 'package:e_commerce_app/pages/food/popular_food_details.dart';
 import 'package:e_commerce_app/routes/route_helpers.dart';
 import 'package:e_commerce_app/utils/app_constants.dart';
 import 'package:e_commerce_app/utils/colors.dart';
@@ -22,14 +21,11 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(" height   ---" + MediaQuery.of(context).size.width.toString());
-
-     return Scaffold(
+    return Scaffold(
       body: Stack(children: [
           Positioned(
-            left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height45,
-            
-            child: Row(
+            left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height40,
+             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
@@ -48,8 +44,9 @@ class CartPage extends StatelessWidget {
           ),
           ),
 
-          Positioned(
-            left: Dimensions.width15, right: Dimensions.width15, bottom: 0, top: Dimensions.height20*4.5,
+      GetBuilder<CartController>(builder: (_cartController){
+        return _cartController.getItems.length>0? Positioned(
+            left: Dimensions.width15, right: Dimensions.width15, bottom: 0, top: Dimensions.height20*5,
             child: MediaQuery.removePadding(
               context: context,
               removeTop: true,
@@ -69,14 +66,19 @@ class CartPage extends StatelessWidget {
                     onTap: (){
                       var popularIndex  = Get.find<PopularProductController>()
                       .popularProductList
-                      .indexOf(_cartList[index].product);
+                      .indexOf(_cartList[index].product!);
                       if(popularIndex>=0){
                         Get.toNamed(RouteHelpers.getPopularFood(popularIndex,"cart_page" ));
                       }else{
                         var recommendedIndex = Get.find<RecommendedProductController>()
                         .recommendedProductList
-                        .indexOf(_cartList[index].product);
-                        Get.toNamed(RouteHelpers.getRecommendedFood(recommendedIndex, "cart_page"));
+                        .indexOf(_cartList[index].product!);
+                        if(recommendedIndex<0){
+                           Get.snackbar("History product", "Product review is not availble for history products" , 
+                           backgroundColor: AppColors.mainColor, colorText: Colors.white); 
+                        }else{
+                          Get.toNamed(RouteHelpers.getRecommendedFood(recommendedIndex, "cart_page"));
+                        }
                       }
                     },
                     child: Container(
@@ -87,7 +89,8 @@ class CartPage extends StatelessWidget {
                      ),
                   ),
                     
-                    SizedBox(width: Dimensions.width10,),
+                   SizedBox(width: Dimensions.width10,),
+                   
                    Expanded(
                      child: SizedBox(
                       height: Dimensions.height20*5,
@@ -123,10 +126,8 @@ class CartPage extends StatelessWidget {
                                  child: Icon(Icons.add, color: AppColors.signColor,size: Dimensions.iconSize16,))
                          ],),
                         ),
-                           
                          
-                                
-                           ],)
+                        ],)
                         ],
                        ),
                      ),
@@ -137,8 +138,10 @@ class CartPage extends StatelessWidget {
               });
             
               },)),
-            ),  
+            ):NoDataPage(text: "Your cart is empty!");
           
+      })
+         
     ],),
 
        bottomNavigationBar: GetBuilder<CartController>(builder: (cartController){
@@ -151,7 +154,8 @@ class CartPage extends StatelessWidget {
       ),
       color: AppColors.buttonBackgroundColor
       ),
-      child: Row(
+
+       child: cartController.getItems.length>0? Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
         Container(
@@ -178,10 +182,13 @@ class CartPage extends StatelessWidget {
             },
             child: BigText(text: "Check out", color: Colors.white, size: Dimensions.font16,)) 
         ),
-      ],),
-     );
+      ],
+      ):Container()
+         );
     
      })
+    
+    
      );
  
   

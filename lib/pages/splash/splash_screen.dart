@@ -7,23 +7,24 @@ import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+    class SplashScreen extends StatefulWidget {
+    const SplashScreen({super.key});
 
-  
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
+    
+    @override
+    State<SplashScreen> createState() => _SplashScreenState();
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin{
+    }
 
-late Animation<double> animation;
-late AnimationController controller;
+    class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin{
 
-_loadedProducts(){
-  Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-}
+    late Animation<double> animation;
+    late AnimationController controller;
+
+    _loadedProducts(){
+      Get.find<PopularProductController>().getPopularProductList();
+        Get.find<RecommendedProductController>().getRecommendedProductList();
+    }
 
   @override
   void initState() {
@@ -37,7 +38,6 @@ _loadedProducts(){
    const Duration(seconds: 3),
     ()=> Get.offNamed(RouteHelpers.getInitial()),
     );
-    
     }
 
     @override
@@ -49,14 +49,16 @@ _loadedProducts(){
         children: [
         ScaleTransition(scale: animation,
           child: Center(
-            child: Container(
+            child: SizedBox(
               height: Dimensions.imageheight,
               width: Dimensions.imagewidth,
-              child: Image.asset("assets/images/fd.png")),
+              child: Image.asset("assets/images/logo.png")),
           ),
         ),
-       // BigText(text: "The best food", size: 25, color: AppColors.mainColor, )
+       Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimensions.height10*5,),
+        child: Image.asset("assets/images/the.png", fit:BoxFit.cover,))
       ],)
     );
+    }
   }
-}

@@ -1,5 +1,6 @@
 
 import 'package:e_commerce_app/base/no_data-page.dart';
+import 'package:e_commerce_app/controllers/auth_controller.dart';
 import 'package:e_commerce_app/controllers/cart_controller.dart';
 import 'package:e_commerce_app/controllers/popular_product_controller.dart';
 import 'package:e_commerce_app/controllers/recommended_product_controller.dart';
@@ -145,7 +146,8 @@ class CartPage extends StatelessWidget {
     ],),
 
        bottomNavigationBar: GetBuilder<CartController>(builder: (cartController){
-        return Container(
+      
+       return Container(
       height: Dimensions.bottombarsize,
       padding: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, top: Dimensions.height20),
       decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radius20*2),
@@ -178,7 +180,13 @@ class CartPage extends StatelessWidget {
           ),
           child: GestureDetector(
             onTap: () {
-              cartController.addToHistory();
+              if(Get.find<AuthController>().userLoggedIn()){
+                print("tapped");
+                 cartController.addToHistory();
+              }else{
+                Get.toNamed(RouteHelpers.getSignInPage());
+              }
+             
             },
             child: BigText(text: "Check out", color: Colors.white, size: Dimensions.font16,)) 
         ),

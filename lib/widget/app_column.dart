@@ -42,7 +42,7 @@ class AppColumn extends StatelessWidget {
             IconAndText(icon: Icons.circle_sharp, text: "Normal", iconColor: AppColors.iconColor1),
             IconAndText(icon: Icons.location_on, text: "1.7km", iconColor: AppColors.mainColor),
             IconAndText(icon: Icons.access_time_rounded, text: "32min", iconColor: AppColors.iconColor2),
-      
+              
           ],)
   
         ]);

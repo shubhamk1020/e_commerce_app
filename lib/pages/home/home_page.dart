@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/pages/account/account_page.dart';
+import 'package:e_commerce_app/pages/account/auth/signup_page.dart';
 import 'package:e_commerce_app/pages/cart/cart_history.dart';
 import 'package:e_commerce_app/pages/home/main_food_page.dart';
 import 'package:e_commerce_app/utils/colors.dart';
@@ -14,16 +16,16 @@ class HomePage extends StatefulWidget {
 }
 
   class _HomePageState extends State<HomePage> {
-
-
-
-
-    int _selectedIndex = 0;
+  int _selectedIndex = 0;
    List pages =[
       MainFoodPage(),
-      Container(child: Center(child: Text("shubham kumar ")),),
+      Container(child: Center(child: Column(
+        children: [
+          Text("shubham kumar is here "),
+        ],
+      )),),
       CartHistory(),
-      Container(child: Center(child: Text("aarti kumari ")),),
+      AccountPage(),
      
     ];
 

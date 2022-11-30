@@ -76,6 +76,10 @@ import '../../models/cart_model.dart';
       sharedPreferences.remove(AppConstants.CART_LIST);
       }
 
-      
+      void clearCartHistory(){
+        removeCart();
+        cartHistory=[];
+        sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+      }
 
 }

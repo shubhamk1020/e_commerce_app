@@ -52,8 +52,8 @@ class Dimensions{
   static double bottombarsize = screenHeight/7.12;
 
   // for splash screen
-  static double imageheight = screenHeight/2.38;
-  static double imagewidth = screenHeight/1.2;
+  static double imageheight = screenHeight/3.38;
+  static double imagewidth = screenHeight/2.2;
 
 
 }
